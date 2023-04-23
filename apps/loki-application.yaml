@@ -1,0 +1,325 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  creationTimestamp: "2023-04-18T18:14:56Z"
+  generation: 2406
+  name: loki
+  namespace: argocd
+  resourceVersion: "1551467"
+  uid: 267a53d6-e769-4cab-ad64-7c2f2bb5e4e2
+spec:
+  destination:
+    namespace: monitoring
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: loki-stack
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 2.9.10
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+status:
+  health:
+    status: Healthy
+  history:
+  - deployStartedAt: "2023-04-18T18:14:57Z"
+    deployedAt: "2023-04-18T18:14:58Z"
+    id: 0
+    revision: 2.9.10
+    source:
+      chart: loki-stack
+      repoURL: https://grafana.github.io/helm-charts
+      targetRevision: 2.9.10
+  operationState:
+    finishedAt: "2023-04-18T18:14:58Z"
+    message: successfully synced (all tasks run)
+    operation:
+      initiatedBy:
+        automated: true
+      retry:
+        limit: 5
+      sync:
+        prune: true
+        revision: 2.9.10
+    phase: Succeeded
+    startedAt: "2023-04-18T18:14:57Z"
+    syncResult:
+      resources:
+      - group: ""
+        hookPhase: Running
+        kind: ServiceAccount
+        message: serviceaccount/loki-promtail created
+        name: loki-promtail
+        namespace: monitoring
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: ServiceAccount
+        message: serviceaccount/loki created
+        name: loki
+        namespace: monitoring
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: Secret
+        message: secret/loki created
+        name: loki
+        namespace: monitoring
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: Secret
+        message: secret/loki-promtail created
+        name: loki-promtail
+        namespace: monitoring
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: ConfigMap
+        message: configmap/loki-loki-stack created
+        name: loki-loki-stack
+        namespace: monitoring
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: ConfigMap
+        message: configmap/loki-loki-stack-test created
+        name: loki-loki-stack-test
+        namespace: monitoring
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: ClusterRole
+        message: "clusterrole.rbac.authorization.k8s.io/loki-promtail reconciled.
+          reconciliation required create\n\tmissing rules added:\n\t\t{Verbs:[get
+          watch list] APIGroups:[] Resources:[nodes nodes/proxy services endpoints
+          pods] ResourceNames:[] NonResourceURLs:[]}. clusterrole.rbac.authorization.k8s.io/loki-promtail
+          configured. Warning: resource clusterroles/loki-promtail is missing the
+          kubectl.kubernetes.io/last-applied-configuration annotation which is required
+          by  apply.  apply should only be used on resources created declaratively
+          by either  create --save-config or  apply. The missing annotation will be
+          patched automatically."
+        name: loki-promtail
+        namespace: monitoring
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: ClusterRoleBinding
+        message: "clusterrolebinding.rbac.authorization.k8s.io/loki-promtail reconciled.
+          reconciliation required create\n\tmissing subjects added:\n\t\t{Kind:ServiceAccount
+          APIGroup: Name:loki-promtail Namespace:monitoring}. clusterrolebinding.rbac.authorization.k8s.io/loki-promtail
+          configured. Warning: resource clusterrolebindings/loki-promtail is missing
+          the kubectl.kubernetes.io/last-applied-configuration annotation which is
+          required by  apply.  apply should only be used on resources created declaratively
+          by either  create --save-config or  apply. The missing annotation will be
+          patched automatically."
+        name: loki-promtail
+        namespace: monitoring
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: Role
+        message: "role.rbac.authorization.k8s.io/loki reconciled. reconciliation required
+          create\n\tmissing rules added:\n\t\t{Verbs:[use] APIGroups:[extensions]
+          Resources:[podsecuritypolicies] ResourceNames:[loki] NonResourceURLs:[]}.
+          role.rbac.authorization.k8s.io/loki configured. Warning: resource roles/loki
+          is missing the kubectl.kubernetes.io/last-applied-configuration annotation
+          which is required by  apply.  apply should only be used on resources created
+          declaratively by either  create --save-config or  apply. The missing annotation
+          will be patched automatically."
+        name: loki
+        namespace: monitoring
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: RoleBinding
+        message: "rolebinding.rbac.authorization.k8s.io/loki reconciled. reconciliation
+          required create\n\tmissing subjects added:\n\t\t{Kind:ServiceAccount APIGroup:
+          Name:loki Namespace:}. rolebinding.rbac.authorization.k8s.io/loki configured.
+          Warning: resource rolebindings/loki is missing the kubectl.kubernetes.io/last-applied-configuration
+          annotation which is required by  apply.  apply should only be used on resources
+          created declaratively by either  create --save-config or  apply. The missing
+          annotation will be patched automatically."
+        name: loki
+        namespace: monitoring
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: Service
+        message: service/loki-headless created
+        name: loki-headless
+        namespace: monitoring
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: Service
+        message: service/loki-memberlist created
+        name: loki-memberlist
+        namespace: monitoring
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: Service
+        message: service/loki created
+        name: loki
+        namespace: monitoring
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: apps
+        hookPhase: Running
+        kind: DaemonSet
+        message: daemonset.apps/loki-promtail created
+        name: loki-promtail
+        namespace: monitoring
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: apps
+        hookPhase: Running
+        kind: StatefulSet
+        message: statefulset.apps/loki created
+        name: loki
+        namespace: monitoring
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      revision: 2.9.10
+      source:
+        chart: loki-stack
+        repoURL: https://grafana.github.io/helm-charts
+        targetRevision: 2.9.10
+  reconciledAt: "2023-04-23T17:51:45Z"
+  resources:
+  - kind: ConfigMap
+    name: loki-loki-stack
+    namespace: monitoring
+    status: Synced
+    version: v1
+  - kind: ConfigMap
+    name: loki-loki-stack-test
+    namespace: monitoring
+    status: Synced
+    version: v1
+  - kind: Secret
+    name: loki
+    namespace: monitoring
+    status: Synced
+    version: v1
+  - kind: Secret
+    name: loki-promtail
+    namespace: monitoring
+    status: Synced
+    version: v1
+  - health:
+      status: Healthy
+    kind: Service
+    name: loki
+    namespace: monitoring
+    status: Synced
+    version: v1
+  - health:
+      status: Healthy
+    kind: Service
+    name: loki-headless
+    namespace: monitoring
+    status: Synced
+    version: v1
+  - health:
+      status: Healthy
+    kind: Service
+    name: loki-memberlist
+    namespace: monitoring
+    status: Synced
+    version: v1
+  - kind: ServiceAccount
+    name: loki
+    namespace: monitoring
+    status: Synced
+    version: v1
+  - kind: ServiceAccount
+    name: loki-promtail
+    namespace: monitoring
+    status: Synced
+    version: v1
+  - group: apps
+    health:
+      status: Healthy
+    kind: DaemonSet
+    name: loki-promtail
+    namespace: monitoring
+    status: Synced
+    version: v1
+  - group: apps
+    health:
+      message: statefulset rolling update complete 1 pods at revision loki-87bb78676...
+      status: Healthy
+    kind: StatefulSet
+    name: loki
+    namespace: monitoring
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: loki-promtail
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRoleBinding
+    name: loki-promtail
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: Role
+    name: loki
+    namespace: monitoring
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: RoleBinding
+    name: loki
+    namespace: monitoring
+    status: Synced
+    version: v1
+  sourceType: Helm
+  summary:
+    images:
+    - docker.io/grafana/promtail:2.7.4
+    - grafana/loki:2.6.1
+  sync:
+    comparedTo:
+      destination:
+        namespace: monitoring
+        server: https://kubernetes.default.svc
+      source:
+        chart: loki-stack
+        repoURL: https://grafana.github.io/helm-charts
+        targetRevision: 2.9.10
+    revision: 2.9.10
+    status: Synced
