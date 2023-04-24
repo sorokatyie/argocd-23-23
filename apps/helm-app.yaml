@@ -1,0 +1,118 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  creationTimestamp: "2023-04-24T04:53:11Z"
+  generation: 20
+  name: helma
+  namespace: argocd
+  resourceVersion: "1608714"
+  uid: e7920442-619f-4db1-8288-44cfa96f86b9
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: jenkins
+    repoURL: https://sorokatyie.github.io/helm/
+    targetRevision: 0.1.0
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+status:
+  health:
+    status: Healthy
+  history:
+  - deployStartedAt: "2023-04-24T04:53:11Z"
+    deployedAt: "2023-04-24T04:53:11Z"
+    id: 0
+    revision: 0.1.0
+    source:
+      chart: jenkins
+      repoURL: https://sorokatyie.github.io/helm/
+      targetRevision: 0.1.0
+  operationState:
+    finishedAt: "2023-04-24T04:53:11Z"
+    message: successfully synced (all tasks run)
+    operation:
+      initiatedBy:
+        automated: true
+      retry:
+        limit: 5
+      sync:
+        prune: true
+        revision: 0.1.0
+    phase: Succeeded
+    startedAt: "2023-04-24T04:53:11Z"
+    syncResult:
+      resources:
+      - group: ""
+        hookPhase: Running
+        kind: ServiceAccount
+        message: serviceaccount/helma-jenkins created
+        name: helma-jenkins
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: Service
+        message: service/helma-jenkins created
+        name: helma-jenkins
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: apps
+        hookPhase: Running
+        kind: Deployment
+        message: deployment.apps/helma-jenkins created
+        name: helma-jenkins
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      revision: 0.1.0
+      source:
+        chart: jenkins
+        repoURL: https://sorokatyie.github.io/helm/
+        targetRevision: 0.1.0
+  reconciledAt: "2023-04-24T05:18:45Z"
+  resources:
+  - health:
+      status: Healthy
+    kind: Service
+    name: helma-jenkins
+    namespace: argocd
+    status: Synced
+    version: v1
+  - kind: ServiceAccount
+    name: helma-jenkins
+    namespace: argocd
+    status: Synced
+    version: v1
+  - group: apps
+    health:
+      status: Healthy
+    kind: Deployment
+    name: helma-jenkins
+    namespace: argocd
+    status: Synced
+    version: v1
+  sourceType: Helm
+  summary:
+    images:
+    - nginx:1.16.0
+  sync:
+    comparedTo:
+      destination:
+        namespace: argocd
+        server: https://kubernetes.default.svc
+      source:
+        chart: jenkins
+        repoURL: https://sorokatyie.github.io/helm/
+        targetRevision: 0.1.0
+    revision: 0.1.0
+    status: Synced
